@@ -268,6 +268,8 @@ public class NfcPlugin extends CordovaPlugin{
                             callbackContext.error("Tag doesn't support NDEF");
                         }
                     }
+				} catch (IllegalStateException e) {
+					callbackContext.error(e.getMessage());
                 } catch (FormatException e) {
                     callbackContext.error(e.getMessage());
                 } catch (TagLostException e) {
