@@ -1,32 +1,29 @@
+**These are legacy instructions for PhoneGap 2.9.**
+
+**Cordova 3.0 is the recommended way to use phonegap-nfc, see [Getting Started Cordova CLI](https://github.com/chariotsolutions/phonegap-nfc/blob/master/doc/GettingStartedCLI.md).**
+
 ## Quickstart for PhoneGap NFC on Android
 
 Follow these instructions to generate a default PhoneGap app and modify it to read NFC tags.
 
-### PhoneGap 2.8
+### PhoneGap 2.9
     
-PhoneGap NFC requires PhoneGap 2.8.x.  Download from [phonegap.com](http://phonegap.com/download). Unzip the archive in `/usr/local`.
+PhoneGap NFC requires PhoneGap 2.9.x.  Download from [phonegap.com](http://phonegap.com/download). Unzip the archive in `/usr/local`.
 
-### Plugman 0.7.10
+### Plugman 0.10.0
 
-Plugman is used to install the plugin into the PhoneGap project. Plugman requires [node.js](http://nodejs.org). Plugman 0.7.10 or greater is recommended. Install plugman globally.
+Plugman is used to install the plugin into the PhoneGap project. Plugman requires [node.js](http://nodejs.org). Plugman 0.10.0 or greater is recommended. Install plugman globally.
 
     $ npm install plugman -g
         
-### Clone NFC Plugin
-
-Get a local copy of the PhoneGap NFC plugin
-
-    $ cd ~
-    $ git clone git://github.com/chariotsolutions/phonegap-nfc.git
-
 ### Generate a project
 
     $ cd ~
-    $ /usr/local/phonegap-2.8.0/lib/android/bin/create foo com.example.foo Foo
+    $ /usr/local/phonegap-2.9.0/lib/android/bin/create foo com.example.foo Foo
 
 ### Install the Plugin
 
-    $ plugman --platform android --project foo --plugin ~/phonegap-nfc
+    $ plugman --platform android --project foo --plugin git://github.com/don/phonegap-nfc.git
             
 ### Edit `index.js`
 
