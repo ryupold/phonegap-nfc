@@ -40,7 +40,7 @@ public class Util {
                 try {
                   json.put("canMakeReadOnly", ndef.canMakeReadOnly());
                 } catch (NullPointerException e) {
-                  json.put("canMakeReadOnly", JSONObject.NULL);
+                  json.put("canMakeReadOnly", null);
                 }
             } catch (JSONException e) {
                 Log.e(TAG, "Failed to convert ndef into json: " + ndef.toString(), e);
