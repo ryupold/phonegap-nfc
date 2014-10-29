@@ -250,7 +250,7 @@ public class NfcPlugin extends CordovaPlugin {
             public void run() {
                 NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(getActivity());
 
-                if (nfcAdapter != null) {
+                if (nfcAdapter != null && getActivity().isFinishing() == false) {
                     nfcAdapter.enableForegroundDispatch(getActivity(), getPendingIntent(), getIntentFilters(), getTechLists());
 
                     if (p2pMessage != null) {
@@ -441,7 +441,10 @@ public class NfcPlugin extends CordovaPlugin {
     public void onPause(boolean multitasking) {
         Log.d(TAG, "onPause " + getIntent());
         super.onPause(multitasking);
-        stopNfc();
+        if (multitasking) {
+            // nfc can't run in background
+            stopNfc();            
+        }
     }
 
     @Override

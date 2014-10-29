@@ -5,25 +5,27 @@
 * [BlackBerry 7](#blackberry-7)
 * [Windows Phone 8](#windows-phone-8)
 
-These instructions assume you have an Assuming you have an existing PhoneGap 2.3.0 Android project.
+These instructions assume you have an existing PhoneGap project. 
 
 ## Android
 
+Your Android project should be using PhoneGap 2.8.
+
 ### Installing with Plugman (recommended)
 
-Use [plugman](https://github.com/imhotep/plugman) to add phonegap-nfc to your Android project.  Plugman requires [node.js](http://nodejs.org) and is installed through npm.
+Use [plugman](https://github.com/apache/cordova-plugman) to add phonegap-nfc to your Android project.  Plugman requires [node.js](http://nodejs.org) and is installed through npm.
 
-Install plugman
+Install plugman 0.7.10 or greater
 
     $ npm install -g plugman
 
+Get the latest source code
+
+    $ git clone https://github.com/chariotsolutions/phonegap-nfc.git
+
 Install the plugin
 
-    $ plugman --platform android --project /path/to/your/project --plugin NFC
-
-Modify your HTML to include phonegap-nfc.js
-
-    <script type="text/javascript" src="js/phonegap-nfc.js"></script>  
+    $ plugman --platform android --project /path/to/your/project --plugin /path/to/phonegap-nfc
 
 ### Manually Installing on Android
 
@@ -31,25 +33,13 @@ Get the latest source code
 
     $ git clone https://github.com/chariotsolutions/phonegap-nfc.git
 
-#### Java
-
-The java code can be installed into your project as a jar file or by copying the source files.
-
-##### Install the jar file
-
-Build the code
-
-    $ ant android
-    
-Copy phonegap-nfc-$VERSION.jar from `dist/` to the `libs/` directory in your project.
-
-    $ cp dist/phonegap-nfc-0.4.2.jar $YOUR_PROJECT/libs/
-
-##### Install source files (alternate method)
-
 Copy the Java source files from src/android/src/ of phonegap-nfc project into the source directory of your Android project.
 
-    $ cp -R src/android/src/ $YOUR_PROJECT/src
+    $ cp -R phonegap-nfc/src/android/src/ $YOUR_PROJECT/src
+    
+For windows use xcopy
+
+    c:\> xcopy phonegap-nfc\src\android\src %YOUR_PROJECT%\src /S
 
 #### config.xml 
 
@@ -59,11 +49,17 @@ Add the NfcPlugin in res/xml/config.xml
 
 #### JavaScript 
 
-Copy www/phonegap-nfc/js into assets/www
-    
-Include phonegap-nfc.js in index.html
+Copy phonegap-nfc.js into assets/www/js/
 
-    <script type="text/javascript" charset="utf-8" src="phonegap-nfc.js"></script>        
+     $ cp phonegap-nfc/www/phonegap-nfc.js $YOUR_PROJECT/assets/www/js/
+     
+Windows     
+     
+     $ copy phonegap-nfc\www\phonegap-nfc.js %YOUR_PROJECT%\assets\www\js\
+    
+Include phonegap-nfc.js in index.html.  Ensure that phonegap-nfc.js is *after* cordova.js and *before* index.js
+
+    <script type="text/javascript" src="js/phonegap-nfc.js"></script>        
 
 #### AndroidManifest.xml
 
@@ -190,4 +186,10 @@ Copy the javascript files from phonegap-nfc\www to the www directory of your pro
     
 Include phonegap-nfc-VERSION.js in index.html
 
-    <script type="text/javascript" src="phonegap-nfc.js"></script>   
+    <script type="text/javascript" src="phonegap-nfc.js"></script>
+    
+Add NfcPlugin to config.xml
+
+    <plugin name="NfcPlugin"/>
+    
+Open WMAppManifest.xml, choose the Capabilities tab, and check ID_CAP_PROXIMITY permission

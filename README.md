@@ -27,7 +27,9 @@ Supported Platforms
 
 See [INSTALL.md](INSTALL.md) for details on how to install the nfc-plugin into your PhoneGap project.
 
-PhoneGap 2.2.0 or greater is required. PhoneGap 2.4.0 is recommended.
+Phonegap 2.8.0 is required for Android and recommended for other platforms. BlackBerry and Windows Phone *should* work with Corodva 2.5 and greater.
+
+See the [doc](doc) directory for additional documentation.
 
 # NFC
 
@@ -172,7 +174,6 @@ This method *must* be called from within an NDEF Event Handler.
 
 - Android
 - BlackBerry 7
-- BlackBerry 10
 - Windows Phone 8
 
 ## nfc.share
@@ -187,7 +188,7 @@ A NDEF Message is an array of one or more NDEF Records
     ndefMessage.push();
 
     nfc.share(ndefMessage, [onSuccess], [onFailure]);
-
+    
 ### Parameters
 
 - __ndefMessage__: An array of NDEF Records.
@@ -205,6 +206,12 @@ Function `nfc.share` writes an NdefMessage via peer-to-peer.  This should appear
 - BlackBerry 10
 - Windows Phone 8
 
+### Platform differences
+
+    Android - shares message until unshare is called
+    Blackberry 10 - shares the message one time or until unshare is called  
+    Windows Phone 8 - must be called from within a NFC event handler like nfc.write 
+
 ## nfc.unshare
 
 Stop sharing NDEF data via peer-to-peer.
@@ -219,6 +226,12 @@ Stop sharing NDEF data via peer-to-peer.
 ### Description
 
 Function `nfc.unshare` stops sharing data via peer-to-peer.
+
+### Supported Platforms
+
+- Android
+- BlackBerry 7
+- BlackBerry 10
 
 ## nfc.erase
 
