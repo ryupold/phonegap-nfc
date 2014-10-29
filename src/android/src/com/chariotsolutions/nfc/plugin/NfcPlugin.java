@@ -234,6 +234,12 @@ public class NfcPlugin extends CordovaPlugin{
             @Override
             public void run() {
                 try {
+					
+					if(tag == null){
+						callbackContext.error("no Tag!");
+						return;
+					}
+					
                     Ndef ndef = Ndef.get(tag);
                     if (ndef != null) {
                         ndef.connect();
